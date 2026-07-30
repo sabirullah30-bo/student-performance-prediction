@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block title %}
+Edit Prediction
+{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-lg">
+            <div class="card-header bg-warning text-dark text-center">
+                <h2>✏️ Edit Prediction</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">Study Hours</label>
+                        <input type="number" step="0.1" name="study_hours"
+                               class="form-control"
+                               value="{{ row[1] }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Attendance</label>
+                        <input type="number" step="0.1" name="attendance"
+                               class="form-control"
+                               value="{{ row[2] }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Previous Marks</label>
+                        <input type="number" step="0.1" name="previous_marks"
+                               class="form-control"
+                               value="{{ row[3] }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Assignments</label>
+                        <input type="number" step="0.1" name="assignments"
+                               class="form-control"
+                               value="{{ row[4] }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">
+                        💾 Update Prediction
+                    </button>
+                    <a href="/history" class="btn btn-secondary">
+                        Cancel
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

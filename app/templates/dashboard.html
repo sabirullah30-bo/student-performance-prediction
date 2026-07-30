@@ -1,0 +1,179 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+
+{% block content %}
+
+<h2 class="text-center mb-4">
+    Student Performance Dashboard
+</h2>
+
+
+<div class="row">
+
+
+    <div class="col-md-3">
+        <div class="card shadow p-3 text-center">
+            <h5>Total Predictions</h5>
+            <h2>{{ total }}</h2>
+        </div>
+    </div>
+
+
+    <div class="col-md-3">
+        <div class="card shadow p-3 text-center">
+            <h5>Average Marks</h5>
+            <h2>{{ average }}</h2>
+        </div>
+    </div>
+
+
+    <div class="col-md-3">
+        <div class="card shadow p-3 text-center">
+            <h5>Highest Marks</h5>
+            <h2>{{ highest }}</h2>
+        </div>
+    </div>
+
+
+    <div class="col-md-3">
+        <div class="card shadow p-3 text-center">
+            <h5>Lowest Marks</h5>
+            <h2>{{ lowest }}</h2>
+        </div>
+    </div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card shadow p-3 text-center">
+            <h5>MAE</h5>
+            <h2>{{ mae }}</h2>
+        </div>
+    </div>
+
+
+    <div class="col-md-4">
+        <div class="card shadow p-3 text-center">
+            <h5>MSE</h5>
+            <h2>{{ mse }}</h2>
+        </div>
+    </div>
+
+
+    <div class="col-md-4">
+        <div class="card shadow p-3 text-center">
+            <h5>R² Score</h5>
+            <h2>{{ r2 }}</h2>
+        </div>
+    </div>
+
+</div>
+<div class="card shadow mt-4 p-4">
+<h4 class="text-center">
+Prediction Performance
+</h4>
+<canvas id="predictionChart"></canvas>
+</div>
+<div class="card shadow mt-4 p-4">
+<h4 class="text-center">
+Actual vs Predicted Marks
+</h4>
+<canvas id="comparisonChart"></canvas>
+</div>
+<div class="card shadow mt-4 p-4">
+
+<h4 class="text-center">
+Prediction Error Analysis
+</h4>
+<canvas id="errorChart"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('predictionChart');
+
+
+new Chart(ctx, {
+
+    type: 'line',
+
+    data: {
+
+        labels: {{ labels | safe }},
+
+        datasets: [{
+
+            label: 'Predicted Marks',
+
+            data: {{ marks | safe }},
+
+            borderWidth: 2
+
+        }]
+
+    }
+
+});
+
+</script>
+<script>
+
+const comparisonCtx = document.getElementById('comparisonChart');
+
+new Chart(comparisonCtx, {
+
+    type: 'bar',
+
+    data: {
+
+        labels: {{ comparison_labels | safe }},
+
+        datasets: [
+
+        {
+            label: 'Actual Marks',
+            data: {{ actual_marks | safe }},
+            borderWidth: 1
+        },
+
+        {
+            label: 'Predicted Marks',
+            data: {{ predicted_marks | safe }},
+            borderWidth: 1
+        }
+
+        ]
+
+    }
+
+});
+
+</script>
+<script>
+const errorCtx = document.getElementById('errorChart');
+new Chart(errorCtx, {
+
+    type: 'bar',
+
+    data: {
+
+        labels: {{ comparison_labels | safe }},
+
+        datasets: [{
+
+            label: 'Prediction Error',
+
+            data: {{ error_values | safe }},
+
+            borderWidth: 1
+
+        }]
+
+    }
+
+});
+
+</script>
+{% endblock %}

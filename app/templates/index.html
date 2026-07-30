@@ -1,29 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Student Performance Prediction</title>
-</head>
-<body>
-    <h1>Student Performance Prediction</h1>
+{% extends "layout.html" %}
+{% block title %}
+Home - Student Predictor
+{% endblock %}
+{% block content %}
+<div class="card shadow p-4">
+    <h2 class="text-center mb-4">
+        Student Performance Prediction
+    </h2>
     <form method="POST">
-        <label>Study Hours:</label>
-        <input type="number" name="study_hours" required>
-        <br><br>
+        <div class="mb-3">
+            <label class="form-label">Study Hours</label>
+            <input type="number" step="any" name="study_hours" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Attendance</label>
+            <input type="number" step="any" name="attendance" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Previous Marks</label>
+            <input type="number" step="any" name="previous_marks" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Assignments</label>
+            <input type="number" step="any" name="assignments" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">
+            Predict Result
+        </button>
 
-        <label>Attendance:</label>
-        <input type="number" name="attendance" required>
-        <br><br>
-
-        <label>Previous Marks:</label>
-        <input type="number" name="previous_marks" required>
-        <br><br>
-        <label>Assignments:</label>
-        <input type="number" name="assignments" required>
-        <br><br>
-        <button type="submit">Predict Marks</button>
     </form>
-    <a href="/history">
-    <button type="button">View Prediction History</button>
-</a>
-</body>
-</html>
+
+</div>
+{% endblock %}

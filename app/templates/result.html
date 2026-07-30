@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}
+Prediction Result
+{% endblock %}
+{% block content %}
+<div class="card shadow p-5 text-center">
+
+    <h2 class="mb-4">
+        Prediction Result
+    </h2>
+
+    <div class="alert alert-success">
+
+        <h4>
+            Predicted Final Marks
+        </h4>
+
+        <h1>
+            {{ prediction }}
+        </h1>
+
+    </div>
+
+    <a href="/" class="btn btn-primary">
+        Make Another Prediction
+    </a>
+
+</div>
+{% endblock %}

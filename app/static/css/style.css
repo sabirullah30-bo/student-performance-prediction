@@ -1,0 +1,21 @@
+body{
+    background:#f4f7fc;
+    font-family:Arial,sans-serif;
+}
+.card{
+    border:none;
+    border-radius:15px;
+}
+.card-header{
+    border-radius:15px 15px 0 0 !important;
+}
+.btn{
+    border-radius:10px;
+}
+table{
+    border-radius:10px;
+    overflow:hidden;
+}
+h2{
+    font-weight:bold;
+}
